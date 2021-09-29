@@ -1,0 +1,92 @@
+﻿@model Palestras.ViewModels.PalestranteViewModel
+
+@{
+    ViewData["Title"] = "Edita";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="text-uppercase">Edita Palestrante</h3>
+    </div>
+    <div class="card-body">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id" />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Nome" class="control-label"></label>
+                        <input asp-for="Nome" class="form-control" />
+                        <span asp-validation-for="Nome" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="PalestranteFoto" class="control-label"></label>
+                        <div class="custom-file">
+                            <input asp-for="PalestranteFoto" class="custom-file-input" />
+                            <label class="custom-file-label" for="customFile">Escolha a foto</label>
+                        </div>
+                        <span asp-validation-for="PalestranteFoto" class="text-danger"></span>
+                        <img src="~/Uploads/@Model.ImagemExistente" class="img-thumbnail" height="80" width="80" asp-append-version="true" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Qualificacao" class="control-label"></label>
+                        <input asp-for="Qualificacao" class="form-control" />
+                        <span asp-validation-for="Qualificacao" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Experiencia" class="control-label"></label>
+                        <input asp-for="Experiencia" class="form-control" />
+                        <span asp-validation-for="Experiencia" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="DataPalestra" class="control-label"></label>
+                        <input asp-for="DataPalestra" class="form-control" />
+                        <span asp-validation-for="DataPalestra" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="HoraPalestra" class="control-label"></label>
+                        <input asp-for="HoraPalestra" class="form-control" />
+                        <span asp-validation-for="HoraPalestra" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="Local" class="control-label"></label>
+                        <textarea asp-for="Local" class="form-control"></textarea>
+                        <span asp-validation-for="Local" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-sm btn-info rounded-0"><i class="fa fa-pencil-alt"></i> Atualiza</button>
+                <a asp-action="Index" class="btn btn-sm btn-primary rounded-0"><i class="fas fa-fast-backward"></i> Retorna</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

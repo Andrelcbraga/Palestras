@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Palestras.Models.Palestrante>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h4>Palestrantes</h4>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Incluir</a>
+</p>
+<table class="table table-bordered table-striped">
+    <thead >
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Qualificacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Experiencia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataPalestra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoraPalestra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Local)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Foto)   
+            </th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">
+                    <img src="~/Uploads/@item.Foto" height="70" width="50" asp-append-version="true" />
+                </a>
+            </td>
+            <td>
+                @item.Nome)
+            </td>
+            <td>
+                @item.Qualificacao)
+            </td>
+            <td>
+                @item.Experiencia)
+            </td>
+            <td>
+                @item.DataPalestra.ToString("dd-MM-yyyy")
+            </td>
+            <td>
+                @item.HoraPalestra.ToString("H:mm")
+            </td>
+            <td>
+                @item.Local)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Foto)
+            </td>*@
+            <td>
+                <a class="btn btn-sm  btn-info"   asp-action="Edit" asp-route-id="@item.Id">Editar</a> 
+                <a class="btn btn-sm btn-warning" asp-action="Details" asp-route-id="@item.Id">Detalhes</a> 
+                @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-info rounded-0"><i class="fa fa-pencil-alt"></i></a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger rounded-0"><i class="fa fa-trash-alt"></i></a>*@
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
